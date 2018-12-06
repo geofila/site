@@ -1,0 +1,205 @@
+    <!DOCTYPE html>
+    <html lang="en" >
+    <html xmlns = "http://www.w3.org/1999/xhtml">
+    <head>
+        <title>AI that Compose Melodies</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/particles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/toggle.css') }}">
+    </head>
+
+    <body style = "background-color: #1F2439">
+        <div id="particles-js"></div>
+        <div class="text text-center">
+            <h2>With your help you will make our AI even smarter!</h2>    
+            <div class = "block">
+            <h3>Just Listen and answer the questions</h3>
+                <button type="button" class = 'btn-sm-block' onclick="playbtn()">
+                    <img id = 'play_btn' src="{{ url_for('static', filename='images/play.png') }}" alt="Play Button"  height="50" width="50">
+                </button>
+                <br>
+
+                <h4>Who do you think that have synthesize this melodie?</h4>
+                <label>
+                    <input type="radio" name="creator" value="1" onclick="change_creator()">
+                    <img id = "human" src="{{ url_for('static', filename='images/human.png') }}" weight= "40" height= "40">
+                </label>
+                <label>
+                    <input type="radio" name="creator" value="2" onclick="change_creator()">
+                    <img id = "computer" src="{{ url_for('static', filename='images/computer.png') }}" weight= "40" height= "40">
+                </label>
+                <br>
+                <h4>How much do you like this melodie?</h4>
+                <label>
+                    <input type="radio" name="satisfaction" value="1" onclick="change_satisfaction()">
+                    <img id = "s1" src="{{ url_for('static', filename='images/1.png') }}" weight= "40" height= "40">
+                </label>
+                <label>
+                  <input type="radio" name="satisfaction" value="2" onclick="change_satisfaction()">
+                  <img id = "s2" src="{{ url_for('static', filename='images/2.png') }}" weight= "40" height= "40">
+                </label>
+                <label>
+                  <input type="radio" name="satisfaction" value="3" onclick="change_satisfaction()">
+                  <img id = "s3" src="{{ url_for('static', filename='images/3.png') }}" weight= "40" height= "40">
+                </label>
+                <label>
+                  <input type="radio" name="satisfaction" value="4" onclick="change_satisfaction()">
+                  <img id = "s4" src="{{ url_for('static', filename='images/4.png') }}" weight= "40" height= "40">
+                </label>
+                <label>
+                  <input type="radio" name="satisfaction" value="5" onclick="change_satisfaction()">
+                  <img id = "s5" src="{{ url_for('static', filename='images/5.png') }}" weight= "40" height= "40">
+                </label>
+                <br>
+                <h4>How much do you find this melodie interesting?</h4>
+                <label>
+                    <input type="radio" name="interesting" value="1" onclick="change_interesting()">
+                    <img id = "i1" src="{{ url_for('static', filename='images/1.png') }}" weight= "40" height= "40">
+                </label>
+                <label>
+                  <input type="radio" name="interesting" value="2" onclick="change_interesting()">
+                  <img id = "i2" src="{{ url_for('static', filename='images/2.png') }}" weight= "40" height= "40">
+                </label>
+                <label>
+                  <input type="radio" name="interesting" value="3" onclick="change_interesting()">
+                  <img id = "i3" src="{{ url_for('static', filename='images/3.png') }}" weight= "40" height= "40">
+                </label>
+                <label>
+                  <input type="radio" name="interesting" value="4" onclick="change_interesting()">
+                  <img id = "i4" src="{{ url_for('static', filename='images/4.png') }}" weight= "40" height= "40">
+                </label>
+                <label>
+                  <input type="radio" name="interesting" value="5" onclick="change_interesting()">
+                  <img id = "i5" src="{{ url_for('static', filename='images/5.png') }}" weight= "40" height= "40">
+                </label>
+                <br><br>
+                <button id= "next" disabled type="button" class ='button btn btn-md' onclick="insert()" style="color: black; background-color: white;">
+                    Next <span class="glyphicon glyphicon-menu-right"></span>
+                </button>
+                <br>
+            </div>
+        <p>For more details about our work <a target="_blank" href='{{ url_for('static', filename="thesis.docx") }}'>here</a>! 
+        <p>See the code on <a target="_blank" href='https://github.com/geofila/Music-Generation'>Github</a>.</p>
+
+        </div>
+
+    <div class="footer">
+        <button id = "help" type="button" onclick="help()"><span class="glyphicon glyphicon-info-sign"></span></button>
+    </div>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <br>
+          <h3 class="modal-title text-center">Help us to make AI even better...</h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        <h4>
+            Για να μπορέσουμε να αξιολογήσουμε τα αποτελέσματα των μοντέλων και για να μπορέσουμε να 
+            καταλάβουμε τις διαφορές και τις αδυναμίες του κάθε ενός χρειαζόμαστε την βοήθειά σου! 
+            Κάθε μελωδία που παίζεται είναι τυχαία επιλεγμένη από διαφορετικά μοντέλα, με διαφορετικούς παραμέτρους, με διαφορετικά σύνολα εκπαίδευσης και διαφορετικές αρχικές ακολουθίες. Παρόλα αυτά ανάμεσα στα κομμάτια που θα ακούσεις υπάρχουν και πραγματικές μελωδίες και κάθε φορά η μελωδία που παίζεται μπορεί να είναι είτε πραγματική είτε κατασκευασμένη από υπολογιστή.
+            <br><br>Αυτό που πρέπει να κάνεις σε αυτό το σημείο είναι απλά να ακούσεις τα διάφορα κομμάτια (πατώντας το play button) και αφού ακούσεις για το κάθε ένα να απαντήσεις στο αν πιστεύεις ότι η μελωδία αυτή είναι πραγματική, πόσο αυτή σου αρέσει αυτή και κατά πόσο την βρήκες ενδιαφέρουσα.
+            <br><br>Τελός κάθε στιγμή μπορείς να σταματήσεις την διαδικασία αξιολόγησης απλά πηγαίνοντας στην προηγούμνη σελίδα 
+            και να πειραματιστείς με τα αποτελέσματα των μοντέλων. Έστω και μια αξιολόγηση είναι σημαντική!</h4>
+          <br>
+            <div style="text-align: center;">
+            <h4> Ποσο καλά γνωρίζεις μουσική;</h4>
+            <label>
+                 <label>
+                    <input type="radio" name="musician" value="user" onclick="change_musician()">
+                    <img id = "m1" src="{{ url_for('static', filename='images/1.png') }}" weight= "60" height= "60">
+                </label>
+
+                <label>
+                  <input type="radio" name="musician" value="mucisian" onclick="change_musician()">
+                  <img id = "m5" src="{{ url_for('static', filename='images/5.png') }}" weight= "60" height= "60">
+                </label>
+                <br><br>
+<!--                 <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="email" type="text" class="form-control" name="email" placeholder="Name">
+                </div> -->
+                <button type="button" class="btn btn-default" onclick = "start()">Ας Ξεκινήσoυμε
+                     <span class="glyphicon glyphicon-menu-right"></span>
+                </button>
+            </div>
+      </div>
+    </div>
+  </div>
+
+
+        <audio id = "melodies" controls loop style="display: none;">
+            <source src="{{ url_for('static', filename='samples/AGG256_294592_1.3616.mp3')}}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio> 
+        <script src='https://cldup.com/S6Ptkwu_qA.js'></script>
+        <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/vote.js') }}"></script>
+
+    <script>
+    var creator = 0;
+    var satisfaction = 0;
+    var interesting = 0;
+    var files;
+    var audio = document.getElementById('melodies');
+    var img = document.getElementById('play_btn');
+    var songs;
+
+    var musician = 0;
+
+
+    window.onload = function () {
+        $('#myModal').modal('show'); 
+        $("#next").prop('disabled', true); 
+        $.ajax({
+            data : {
+                // network : $("input[name='model']:checked").val(),
+            },
+            url: "/get_melodies",
+            type: "POST",
+            success: function(resp){
+                files = resp.files;
+                songs = shuffle(files);
+                audio.src = "static/samples/" + songs[0];
+                songs.shift();
+            }
+        });
+    };
+
+    $('#myModal').on('hidden.bs.modal', function () {
+        if (musician == 0) $('#myModal').modal('show'); 
+    })
+
+function start(){        
+    $('#myModal').modal('hide');
+}
+
+
+function help(){
+    $('#myModal').modal('show'); 
+    if (musician == "user"){
+        document.getElementById('m1').src = 'static/images/1b.png';
+        document.getElementById('m5').src = 'static/images/5.png';
+    }
+    else {
+        document.getElementById('m1').src = 'static/images/1.png';
+        document.getElementById('m5').src = 'static/images/5b.png';
+    }
+}
+    </script>
+    </body>
+    </html>
