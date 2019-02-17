@@ -1,3 +1,5 @@
+var flag= true;
+
 function playbtn(){
 	if (flag) change_melodies();
 	if (audio.duration > 0 && !audio.paused){
@@ -8,7 +10,7 @@ function playbtn(){
 		audio.play();
 	}
 }
-var flag= true;
+
 function change(){
 	img.src = 'static/images/play.png';
 	audio.pause();
@@ -26,14 +28,20 @@ function change_melodies(){
 	var dataset = document.querySelector('input[name="toggle_option_dts"]:checked').value;
 	var balanced = document.querySelector('input[name="toggle_option_balanced"]:checked').value;
 	var init = document.querySelector('input[name="toggle_option_init"]:checked').value;
-	prefix = model+ dataset + init + prm;
+	prefix = model+ dataset + balanced +init + prm;
 	if (prefix != global_prefix || global_possible_songs.length == 0){
-			global_possible_songs = get_melodies(prefix)
+			global_possible_songs = get_melodies(prefix);
+			if (global_possible_songs.length == 0){
+				global_possible_songs = get_melodies("APIP512");
+			} 
+			global_possible_songs = shuffle(global_possible_songs);
 			global_prefix = prefix;
 	}
-	audio.src = 'static/samples/' + global_possible_songs[0];
+	source = 'static/samples/' + global_possible_songs[0];
+	audio.src = source;
 	global_possible_songs.shift();
 	flag = false;
+	document.getElementById("download").href= source; 
 }
 
 function get_melodies(prefix){

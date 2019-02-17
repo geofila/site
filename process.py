@@ -28,8 +28,9 @@ def insert():
 	satisfaction = request.form['satisfaction']
 	interesting = request.form['interesting']
 
-	if (musician == 0 or song == 0 or creator == 0 or satisfaction == 0 or interesting ==0):
-		return jsonify({'data': 'hmmmm.....!!!'})
+	if (musician == "0" or song == "0" or creator == "0" or satisfaction == "0" or interesting =="0"):
+		return jsonify({'data': 'Open Modal'})
+
 	path = 'static/ratings/' + musician
 	try:
 		lock = threading.Lock()
@@ -41,9 +42,8 @@ def insert():
 			save_obj(d, path)
 		return jsonify({'data': 'Ok'})
 	except Exception as e:
-		return jsonify({'data': 'Erooorrr' })
-
+		return jsonify({'data': str(e) })
 
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(debug=False, threaded=False)

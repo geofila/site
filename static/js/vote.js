@@ -78,6 +78,8 @@ function make_enable(){
 }
 
 function insert(){
+	console.log(creator, satisfaction, interesting)
+	if (creator == 0 ||satisfaction == 0 || interesting == 0) return;
 	$.ajax({
         data : {
         	'musician' : musician,
@@ -90,6 +92,19 @@ function insert(){
         type: "POST",
         success: function(resp){
         	console.log(resp.data);
+
+        	if (resp.data === "Open Modal"){
+	            $("#red").css("color","#8d0c0c");
+	            $('#red').text("Τελευταίο βήμα και φυγάμε!")
+	            if (($("#myModal").data('bs.modal') || {}).isShown) $('#myModal').modal('hide');
+	            if (($("#myModal2").data('bs.modal') || {}).isShown) $('#myModal2').modal('hide');
+	            if (($("#myModal3").data('bs.modal') || {}).isShown) $('#myModal3').modal('hide'); 
+		        setTimeout(function (){
+					$('#myModal3').modal('show'); 
+					}, 200);
+	            playbtn()
+	            return;
+        	}
         	playbtn();
 			audio.src = "static/samples/" + songs[0];
 		    songs.shift();
@@ -113,6 +128,9 @@ function insert(){
 			creator = 0;
 			satisfaction = 0;
 			interesting = 0;
+			setTimeout(function (){
+				playbtn();
+				}, 200);
         }
     });
 }
