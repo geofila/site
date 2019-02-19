@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/toggle.css') }}">
 </head>
 
-<body style = "background-color: #1F2439; overflow-y: hidden;" >
+<body style = "background-color: #1F2439;" >
     <div id="particles-js"></div>
 
-    <div class="text text-center">
+    <div class="text text-center" style="min-width: 600px;">
         <h2 style="display: inline">Your help will make our </h2>
         <h1 style="display: inline; color: #5382CA;">AI</h1> <h2 style="display: inline">  even smarter!</h2>
         <br><br>
-        <div class = "block">
+        <div class = "block" style="min-width: 400px;">
         <h3>Just Listen and answer the questions</h3>
         
         <button type="button" class = 'btn-sm-block' onclick="playbtn()">
@@ -88,7 +88,7 @@
         </button>
         <br>
     </div>
-
+    
     <div id = "content" style = "line-height: 0.9">
         <br>
         <p>For more details about our work press <a href=''>here</a>!</p>

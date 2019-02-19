@@ -27,7 +27,7 @@ canvas {
 }
 
 .block{
-  /*max-width: 90%;*/
+  
   padding: 2em 3em;
   background: rgba(0, 0, 0, 0.6); 
   font-family: 'Open Sans', sans-serif;
