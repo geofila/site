@@ -78,7 +78,6 @@ function make_enable(){
 }
 
 function insert(){
-	console.log(creator, satisfaction, interesting)
 	if (creator == 0 ||satisfaction == 0 || interesting == 0) return;
 	$.ajax({
         data : {
