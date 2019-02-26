@@ -3,9 +3,8 @@
 <html xmlns = "http://www.w3.org/1999/xhtml">
 <head>
     <title>AI Melodies Composer</title>
-    <meta name="viewport" content="width=1060px, maximum-scale=0.5" />
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -15,16 +14,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/toggle.css') }}">
 </head>
 
-<body style = "background-color: #1F2439; overflow-y: scroll;" >
+<body style = "background-color: #1F2439;" >
     <div id="particles-js"></div>
 
-    <div class="text text-center" style="min-width: 500px; min-height: 300px">
+    <div class="text text-center" style="min-width: 600px;">
         <div id = "title">
         <h2 style="display: inline">Your help will make our </h2>
         <h1 style="display: inline; color: #5382CA;">AI</h1> <h2 style="display: inline">  even smarter!</h2>
         </div>
         <br>
-        <div class = "block text-center" style="min-width: 500px;">
+        <div class = "block text-center" style="min-width: 300px;">
         <h3>Just Listen and answer the questions</h3>
         
         <button type="button" class = 'btn-sm-block' onclick="playbtn()">
@@ -164,6 +163,7 @@
                     </button>
                     <br>
                      <h4><center> Πιστευείς οτι μπορείς να καταλάβεις την διαφορα?</center></h4>
+                     <br>
                     <div style="text-align: center;">
                         <button type="button" class="btn btn-default" onclick = "next1()">Επόμενο
                              <span class="glyphicon glyphicon-menu-right"></span>
@@ -244,11 +244,6 @@
 
 
     window.onload = function () {
-        if (screen.width < 800) {
-            document.getElementById("title").style.paddingLeft = "85px";
-            document.getElementById("content").style.paddingLeft = "85px";
-            document.getElementByClassName("block").style.borderRadius = "0px";
-        }
         $('#myModal').modal('show'); 
         $("#next").prop('disabled', true); 
         $.ajax({

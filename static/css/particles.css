@@ -1,8 +1,9 @@
-html { overflow-y: fixed; }
+html {  }
 canvas {
   display: block;
   vertical-align: bottom;
   height: 100%;
+  width: 100%;
 }
 
 #particles-js {
@@ -14,16 +15,18 @@ canvas {
   /*background: : #808080;*/
   /*background: linear-gradient(95deg, rgba(31,36,57,1) 0%, rgba(17,20,45,1) 51%, rgba(31,36,57,1) 100%); */
 }
+#title{
 
+}
 
 .text {
-  position: absolute;
+  position: relative;
   top: 50%;
-  right: 50%;
-  -webkit-transform: translate(50%, -50%);
-          transform: translate(50%, -50%);
-  max-width: 50%;
+  left: 25%;
+  right: 25%;
+  width: 50%;
   padding: 2em 3em;
+  min_width: 500px;
   /*background: rgba(0, 0, 0, 0.6); */
   font-family: 'Open Sans', sans-serif;
   border-radius: 25px;
@@ -31,8 +34,10 @@ canvas {
 }
 
 .block{
+  left: 25%;
+  right: 25%;
   /*max-width: 90%;*/
-  min_width: 385px;
+  min_width: 500px;
   padding: 2em 3em;
   background: rgba(5, 6, 13, .8); 
   font-family: 'Open Sans', sans-serif;
